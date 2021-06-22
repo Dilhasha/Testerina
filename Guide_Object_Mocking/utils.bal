@@ -4,7 +4,7 @@ import ballerina/http;
 // This function checks if the provided category is a valid one.
 function isCategoryAvailable(json[] categories, string category) returns boolean {
     foreach var cat in categories {
-        if (cat.toJsonString() == category) {
+        if (cat.toString() == category) {
             return true;
         }
     }

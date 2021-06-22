@@ -32,7 +32,7 @@ function getRandomJoke(string name, string category = "food") returns @tainted s
         json payload = check response.getJsonPayload();
         json joke = check payload.value;
 
-        replacedText = regex:replaceAll(joke.toJsonString(), "Chuck Norris", name);
+        replacedText = regex:replaceAll(joke.toString(), "Chuck Norris", name);
         return replacedText;
 
     } else {
