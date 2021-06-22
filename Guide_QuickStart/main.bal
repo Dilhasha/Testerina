@@ -13,7 +13,7 @@
          var payload = response.getJsonPayload();
          if (payload is json) {
              json joke = check payload.value;
-             string replacedText = regex:replaceAll(joke.toJsonString(), "Chuck Norris", name);
+             string replacedText = regex:replaceAll(joke.toString(), "Chuck Norris", name);
              return replacedText;
          }
      } else {
