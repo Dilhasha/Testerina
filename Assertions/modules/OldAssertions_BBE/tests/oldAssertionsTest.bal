@@ -139,7 +139,8 @@ function testAssertFalse() {
 
 @test:Config { }
 function testAssertFail() {
-    if (true) {
+    boolean flag = true;
+    if (flag) {
         return;
     }
     test:assertFail(msg = "AssertFailed");

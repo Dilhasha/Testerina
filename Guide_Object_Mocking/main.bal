@@ -19,21 +19,21 @@ function getRandomJoke(string name, string category = "food") returns @tainted s
             error err = error("'" + category + "' is not a valid category.");
             io:println(err.message());
             return err;
+        } else {
+            // Get a random joke from the provided category
+            response = check clientEndpoint->get("/random?category=" + category);
+
+            if (response.statusCode == http:STATUS_OK) {
+                json payload = check response.getJsonPayload();
+                json joke = check payload.value;
+
+                replacedText = regex:replaceAll(joke.toString(), "Chuck Norris", name);
+                return replacedText;
+
+            } else {
+                return createError(response);
+            }
         }
-
-    } else {
-        return createError(response);
-    }
-
-    // Get a random joke from the provided category
-    response = check clientEndpoint->get("/random?category=" + category);
-
-    if (response.statusCode == http:STATUS_OK) {
-        json payload = check response.getJsonPayload();
-        json joke = check payload.value;
-
-        replacedText = regex:replaceAll(joke.toString(), "Chuck Norris", name);
-        return replacedText;
 
     } else {
         return createError(response);
